@@ -31,7 +31,6 @@ export function Navbar() {
   }, [location]);
 
   const navLinks = [
-    { name: "Home", href: "/" },
     { name: "Gallery", href: "/#gallery" },
     { name: "Events", href: "/#events" },
     { name: "Facilities", href: "/#facilities" },
@@ -67,9 +66,7 @@ export function Navbar() {
                 to={link.href}
                 className={cn(
                   "text-[11px] xl:text-[13px] font-semibold tracking-[0.15em] uppercase transition-all duration-300",
-                  (location.pathname === "/" && link.name === "Home" && !location.hash)
-                    ? "text-luxury-gold border-b border-luxury-gold pb-1"
-                    : "text-luxury-cream/70 hover:text-luxury-gold"
+                  "text-luxury-cream/70 hover:text-luxury-gold"
                 )}
               >
                 {link.name}
@@ -97,6 +94,8 @@ export function Navbar() {
         <button
           className="lg:hidden text-luxury-gold"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>

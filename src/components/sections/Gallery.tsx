@@ -1,7 +1,18 @@
 import { motion } from "motion/react";
 import { siteConfig } from "../../data/config";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Lightbox } from "../ui/Lightbox";
 
 export function Gallery() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const openLightbox = (index: number) => {
+    setCurrentIndex(index);
+    setLightboxOpen(true);
+  };
+
   return (
     <section className="py-16 md:py-[120px] px-6 md:px-20 bg-[#150f0e] border-y border-luxury-gold/10" id="gallery">
       <div className="max-w-[1440px] mx-auto">
@@ -31,7 +42,8 @@ export function Gallery() {
             {siteConfig.gallery.map((image, i) => (
               <div
                 key={i}
-                className={`group relative overflow-hidden border border-luxury-gold/20 bg-luxury-dark ${image.colSpan} ${image.rowSpan}`}
+                className={`group relative overflow-hidden border border-luxury-gold/20 bg-luxury-dark ${image.colSpan} ${image.rowSpan} cursor-pointer`}
+                onClick={() => openLightbox(i)}
               >
                 <img
                   src={image.src}
@@ -52,15 +64,23 @@ export function Gallery() {
           </div>
 
           <div className="text-center mt-12">
-            <a
-              href="#"
+            <Link
+              to="/gallery"
               className="inline-block text-[13px] font-semibold text-luxury-gold border border-luxury-gold px-10 py-4 hover:bg-luxury-gold hover:text-luxury-dark transition-all duration-500 tracking-widest uppercase"
             >
               View Full Gallery
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>
+
+      <Lightbox
+        images={siteConfig.gallery}
+        currentIndex={currentIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        onIndexChange={setCurrentIndex}
+      />
     </section>
   );
 }

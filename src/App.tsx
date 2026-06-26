@@ -8,22 +8,28 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { WhatsAppButton } from "./components/ui/WhatsAppButton";
+import { ScrollToTop } from "./components/layout/ScrollToTop";
+import { Analytics } from "@vercel/analytics/react";
 import Home from "./pages/Home";
 import RulesAndRegulations from "./pages/RulesAndRegulations";
+import FullGallery from "./pages/FullGallery";
 
 export default function App() {
   return (
     <HelmetProvider>
       <Router>
+        <ScrollToTop />
         <div className="flex flex-col min-h-screen overflow-x-hidden">
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/rules" element={<RulesAndRegulations />} />
+            <Route path="/gallery" element={<FullGallery />} />
           </Routes>
           <Footer />
           <WhatsAppButton />
         </div>
+        <Analytics />
       </Router>
     </HelmetProvider>
   );

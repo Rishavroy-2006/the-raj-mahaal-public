@@ -10,13 +10,13 @@ export default function RulesAndRegulations() {
   return (
     <>
       <Helmet>
-        <title>Rules and Regulations | {siteConfig.name}</title>
+        <title>Venue Guidelines | {siteConfig.name}</title>
       </Helmet>
       <main className="flex-grow w-full pt-32 pb-24 px-6 md:px-20 max-w-[1440px] mx-auto">
         <div className="bg-luxury-dark/50 border border-luxury-gold/30 rounded-lg shadow-2xl w-full max-w-4xl mx-auto flex flex-col relative overflow-hidden">
           <div className="flex items-center justify-center p-6 md:p-8 border-b border-luxury-gold/20 shrink-0 text-center">
             <h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-luxury-gold uppercase tracking-widest">
-              Rules and Regulations
+              Venue Guidelines
             </h2>
           </div>
           

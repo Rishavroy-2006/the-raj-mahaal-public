@@ -32,8 +32,8 @@ export function Experience() {
           >
             <SectionHeading 
               label="The Raj Mahaal Experience"
-              title="A Choreographed Journey of Splendor"
-              description="Every celebration at THE RAJ MAHAAL is a curated sequence of unforgettable moments. From the first step onto our grounds to the final farewell, we orchestrate an atmosphere of timeless elegance where your legacy is celebrated with imperial grace."
+              title="Everything Your Day Needs, Under One Roof"
+              description="From an AC hall that seats 500 guests to a dedicated tandoor kitchen, premium buffet counters, and ample parking. We handle the infrastructure. You handle the memories."
               align="left"
             />
             
@@ -55,6 +55,24 @@ export function Experience() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-12 md:mt-16 border border-luxury-gold/30 p-8 text-center bg-luxury-gold/5">
+              <p className="text-luxury-cream/60 text-sm tracking-widest uppercase mb-2 font-semibold">
+                Packages Starting From
+              </p>
+              <p className="font-display text-luxury-gold text-4xl">
+                {siteConfig.pricing.startingFrom}
+              </p>
+              <p className="text-luxury-cream/60 text-sm mt-3 mb-6">
+                {siteConfig.pricing.note}
+              </p>
+              <a 
+                href="#contact" 
+                className="inline-block border border-luxury-gold text-luxury-gold px-8 py-3 text-sm tracking-widest uppercase hover:bg-luxury-gold hover:text-luxury-dark transition-colors"
+              >
+                {siteConfig.pricing.ctaText}
+              </a>
             </div>
           </motion.div>
         </div>

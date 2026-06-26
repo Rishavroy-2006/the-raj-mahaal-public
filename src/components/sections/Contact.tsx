@@ -2,16 +2,40 @@ import { motion } from "motion/react";
 import { siteConfig } from "../../data/config";
 import { PhoneCall } from "lucide-react";
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 
 export function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
     const formData = new FormData(e.currentTarget);
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.get("name")?.toString().trim()) {
+      newErrors.name = "Please enter your full name.";
+    }
+    if (!formData.get("phone")?.toString().trim()) {
+      newErrors.phone = "Please enter your contact number.";
+    }
+    if (!formData.get("event")?.toString().trim()) {
+      newErrors.event = "Please select an event type.";
+    }
+    if (!formData.get("date")?.toString().trim()) {
+      newErrors.date = "Please select a preferred event date.";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setFormErrors(newErrors);
+      return;
+    }
+
+    setFormErrors({});
+    setIsSubmitting(true);
+
     formData.append("access_key", "34482ae3-6362-4cd0-9c73-26cdc973f828");
     formData.append("subject", "New Venue Inquiry - The Raj Mahaal");
 
@@ -30,7 +54,7 @@ export function Contact() {
 
       if (res.success) {
         setIsSubmitted(true);
-        setTimeout(() => setIsSubmitted(false), 5000);
+        track("inquiry_submitted", { event_type: formData.get("event")?.toString() || "unknown" });
       } else {
         console.error(res);
       }
@@ -42,7 +66,7 @@ export function Contact() {
   };
 
   return (
-    <section className="py-16 md:py-[120px] px-6 md:px-20 relative bg-luxury-maroon" id="contact">
+    <section className="py-16 pb-24 md:py-[120px] px-6 md:px-20 relative bg-luxury-maroon" id="contact">
       <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-luxury-gold/20 via-transparent to-transparent"></div>
       
       <div className="relative z-10 max-w-5xl mx-auto">
@@ -57,14 +81,14 @@ export function Contact() {
             <div className="flex items-center gap-4 mb-6">
               <div className="h-px w-12 bg-luxury-gold"></div>
               <span className="text-[13px] font-semibold text-luxury-gold tracking-widest uppercase">
-                Private Viewing
+                Event Inquiry
               </span>
             </div>
             <h2 className="font-display text-luxury-cream mb-6 md:mb-8 text-3xl sm:text-4xl md:text-6xl">
-              Schedule a Venue Visit
+              Send Us Your Requirements
             </h2>
             <p className="text-luxury-cream/80 mb-10 md:mb-12 text-base md:text-lg font-light leading-relaxed">
-              Allow our expert event specialists to assist you in planning an unforgettable occasion. Contact us to schedule a private viewing of our grand facilities.
+              Allow our expert event specialists to assist you in planning an unforgettable occasion. Share your details below, and we will get back to you with a tailored proposal.
             </p>
             
             <div className="flex flex-col gap-6">
@@ -109,24 +133,37 @@ export function Contact() {
                   </svg>
                 </div>
                 <h3 className="font-display text-luxury-gold mb-4 text-2xl md:text-3xl">Inquiry Received</h3>
-                <p className="text-luxury-cream/80 font-light text-sm md:text-base">Our Royal Concierge will contact you within 24 hours.</p>
+                <p className="text-luxury-cream/80 font-light text-sm md:text-base mb-8">Our Royal Concierge will contact you within 24 hours.</p>
+                <button
+                  type="button"
+                  onClick={() => setIsSubmitted(false)}
+                  className="bg-transparent border border-luxury-gold text-luxury-gold px-8 py-3 text-xs tracking-widest uppercase hover:bg-luxury-gold hover:text-luxury-dark transition-colors"
+                >
+                  Submit Another Inquiry
+                </button>
               </div>
             ) : (
               <>
                 <h3 className="font-display text-luxury-gold mb-6 md:mb-8 text-2xl md:text-3xl text-center">
                   Enquire About Your Event
                 </h3>
-                <form className="space-y-8" onSubmit={handleSubmit}>
+                <form className="space-y-8" onSubmit={handleSubmit} noValidate>
                   <div>
                     <label className="sr-only" htmlFor="name">Name</label>
                     <input
                       id="name"
                       name="name"
                       required
-                      className="w-full border-0 border-b border-luxury-gold/30 bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream placeholder:text-luxury-cream/40 transition-colors focus:outline-none"
+                      aria-describedby={formErrors.name ? "name-error" : undefined}
+                      className={`w-full border-0 border-b ${formErrors.name ? 'border-luxury-gold' : 'border-luxury-gold/30'} bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream placeholder:text-luxury-cream/40 transition-colors focus:outline-none`}
                       placeholder="Your Full Name"
                       type="text"
                     />
+                    {formErrors.name && (
+                      <p id="name-error" role="alert" className="text-luxury-gold text-xs mt-2 font-medium">
+                        {formErrors.name}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="sr-only" htmlFor="phone">Phone</label>
@@ -134,10 +171,16 @@ export function Contact() {
                       id="phone"
                       name="phone"
                       required
-                      className="w-full border-0 border-b border-luxury-gold/30 bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream placeholder:text-luxury-cream/40 transition-colors focus:outline-none"
+                      aria-describedby={formErrors.phone ? "phone-error" : undefined}
+                      className={`w-full border-0 border-b ${formErrors.phone ? 'border-luxury-gold' : 'border-luxury-gold/30'} bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream placeholder:text-luxury-cream/40 transition-colors focus:outline-none`}
                       placeholder="Contact Number"
                       type="tel"
                     />
+                    {formErrors.phone && (
+                      <p id="phone-error" role="alert" className="text-luxury-gold text-xs mt-2 font-medium">
+                        {formErrors.phone}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="sr-only" htmlFor="event">Event Type</label>
@@ -145,7 +188,8 @@ export function Contact() {
                       id="event"
                       name="event"
                       required
-                      className="w-full border-0 border-b border-luxury-gold/30 bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream/80 focus:outline-none"
+                      aria-describedby={formErrors.event ? "event-error" : undefined}
+                      className={`w-full border-0 border-b ${formErrors.event ? 'border-luxury-gold' : 'border-luxury-gold/30'} bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream/80 focus:outline-none`}
                     >
                       <option value="" className="bg-luxury-dark text-luxury-cream">Select Event Type</option>
                       <option value="wedding" className="bg-luxury-dark text-luxury-cream">Wedding Ceremony</option>
@@ -156,24 +200,41 @@ export function Contact() {
                       <option value="social" className="bg-luxury-dark text-luxury-cream">Social Gathering</option>
                       <option value="other" className="bg-luxury-dark text-luxury-cream">Other</option>
                     </select>
+                    {formErrors.event && (
+                      <p id="event-error" role="alert" className="text-luxury-gold text-xs mt-2 font-medium">
+                        {formErrors.event}
+                      </p>
+                    )}
                   </div>
                   <div>
-                    <label className="sr-only" htmlFor="date">Event Date</label>
+                    <label
+                      htmlFor="date"
+                      className="block text-[11px] font-semibold text-luxury-cream/60 tracking-widest mb-2 uppercase"
+                    >
+                      Preferred Event Date
+                    </label>
                     <input
                       id="date"
                       name="date"
                       required
-                      className="w-full border-0 border-b border-luxury-gold/30 bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream placeholder:text-luxury-cream/40 transition-colors focus:outline-none [color-scheme:dark]"
+                      aria-describedby={formErrors.date ? "date-error" : undefined}
+                      className={`w-full border-0 border-b ${formErrors.date ? 'border-luxury-gold' : 'border-luxury-gold/30'} bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream placeholder:text-luxury-cream/40 transition-colors focus:outline-none [color-scheme:dark]`}
                       placeholder="Preferred Date"
                       type="date"
+                      min={new Date().toISOString().split('T')[0]}
                     />
+                    {formErrors.date && (
+                      <p id="date-error" role="alert" className="text-luxury-gold text-xs mt-2 font-medium">
+                        {formErrors.date}
+                      </p>
+                    )}
                   </div>
                   <button
                     type="submit"
                     disabled={isSubmitting}
                     className="w-full bg-luxury-gold text-luxury-dark text-[13px] font-semibold py-5 mt-8 hover:bg-luxury-gold-light transition-all duration-500 uppercase tracking-[0.2em] disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? "Sending..." : "Submit Inquiry"}
+                    {isSubmitting ? "Sending..." : "Send Inquiry"}
                   </button>
                 </form>
               </>

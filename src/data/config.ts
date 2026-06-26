@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "THE RAJ MAHAAL",
   description: "Sodepur's Premier Fully Air-Conditioned Banquet Hall for Weddings, Receptions, Birthdays, and Corporate Events and more.",
-  url: "https://therajmahaal.vercel.app",
+  url: "https://therajmahaal.vercel.app/",
   contact: {
     primaryPhone: "9331027787",
     secondaryPhone: "6290338181",
@@ -102,5 +102,10 @@ export const siteConfig = {
     { title: "Tandoor Oven Facility", icon: "ChefHat" },
     { title: "Generator Backup", icon: "Power" },
     { title: "Photogenic Event Spaces", icon: "Camera" }
-  ]
+  ],
+  pricing: {
+    startingFrom: "₹5X,XXX",
+    note: "Packages vary by guest count and event duration.",
+    ctaText: "Request a Custom Quote"
+  }
 };

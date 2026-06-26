@@ -101,9 +101,9 @@ export function Footer() {
           <Link 
             to="/rules"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="text-sm text-red-500 font-bold hover:text-red-400 transition-colors uppercase tracking-wider underline underline-offset-4"
+            className="text-[11px] sm:text-xs text-luxury-gold font-semibold hover:text-luxury-dark hover:bg-luxury-gold border border-luxury-gold/50 px-4 py-2 transition-all duration-300 uppercase tracking-widest"
           >
-            Rules and Regulations
+            Venue Guidelines
           </Link>
         </div>
       </div>

@@ -8,7 +8,8 @@ export function Hero() {
         <img
           alt="The Raj Mahaal Grand Venue"
           src={siteConfig.images.hero}
-          className="w-full h-full object-cover object-center scale-105 animate-[pulse_20s_ease-in-out_infinite_alternate]"
+          fetchPriority="high"
+          className="w-full h-full object-cover object-center [animation:kenBurns_20s_ease-in-out_infinite_alternate] motion-reduce:animate-none"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-dark/90 via-luxury-dark/40 to-luxury-dark/95"></div>
       </div>
