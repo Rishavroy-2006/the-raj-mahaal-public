@@ -61,7 +61,7 @@ export function Hero() {
           </a>
           <a
             href="tel:9331027787"
-            className="bg-transparent border border-luxury-gold text-luxury-gold text-[13px] font-semibold px-12 py-5 hover:bg-luxury-gold/10 transition-colors duration-500 text-center tracking-[0.2em] uppercase w-full sm:w-auto backdrop-blur-sm"
+            className="bg-transparent border border-luxury-gold text-luxury-gold text-[13px] font-semibold px-12 py-5 hover:bg-luxury-gold/10 transition-colors duration-500 text-center tracking-[0.2em] uppercase w-full sm:w-auto"
           >
             Contact Us
           </a>
