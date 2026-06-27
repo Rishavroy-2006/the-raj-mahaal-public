@@ -4,7 +4,7 @@
  */
 
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { WhatsAppButton } from "./components/ui/WhatsAppButton";
@@ -17,20 +17,18 @@ import FullGallery from "./pages/FullGallery";
 export default function App() {
   return (
     <HelmetProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="flex flex-col min-h-screen overflow-x-hidden">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/rules" element={<RulesAndRegulations />} />
-            <Route path="/gallery" element={<FullGallery />} />
-          </Routes>
-          <Footer />
-          <WhatsAppButton />
-        </div>
-        <Analytics />
-      </Router>
+      <ScrollToTop />
+      <div className="flex flex-col min-h-screen overflow-x-hidden">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/rules" element={<RulesAndRegulations />} />
+          <Route path="/gallery" element={<FullGallery />} />
+        </Routes>
+        <Footer />
+        <WhatsAppButton />
+      </div>
+      <Analytics />
     </HelmetProvider>
   );
 }
