@@ -1,9 +1,17 @@
 # The Raj Mahaal
 
+> The Raj Mahaal — Sodepur's premier fully air-conditioned banquet hall.
+
 The Raj Mahaal is Sodepur's premier fully air-conditioned banquet hall for weddings, receptions, birthdays, and corporate events. Capacity up to 500 guests.
 
-## Links
-- [Home - The Raj Mahaal](https://therajmahaal.vercel.app/)
+## Site navigation
+
+- [Home](https://therajmahaal.vercel.app/)
+- [Rules](https://therajmahaal.vercel.app/rules)
+- [Gallery](https://therajmahaal.vercel.app/gallery)
+
+## External links
+
 - [Facebook](https://www.facebook.com/people/The-Raj-Mahaal/61586335487117/)
 - [Instagram](https://www.instagram.com/therajmahaal/)
 - [Google Maps](https://maps.app.goo.gl/nGhLzrnZMJUu5QFb7)

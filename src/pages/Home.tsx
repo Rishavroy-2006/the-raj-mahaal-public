@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { siteConfig } from "../data/config";
 import { Hero } from "../components/sections/Hero";
 import { Experience } from "../components/sections/Experience";
+import { LazySection } from "../components/ui/LazySection";
 
 const VideoTour = lazy(() => import("../components/sections/VideoTour").then(m => ({ default: m.VideoTour })));
 const Features = lazy(() => import("../components/sections/Features").then(m => ({ default: m.Features })));
@@ -80,10 +81,18 @@ export default function Home() {
         <Hero />
         <Experience />
         <Suspense fallback={<div className="py-24" />}>
-          <VideoTour />
-          <Features />
-          <Facilities />
-          <Gallery />
+          <LazySection minHeight="50vh">
+            <VideoTour />
+          </LazySection>
+          <LazySection minHeight="50vh">
+            <Features />
+          </LazySection>
+          <LazySection minHeight="100vh">
+            <Facilities />
+          </LazySection>
+          <LazySection minHeight="100vh">
+            <Gallery />
+          </LazySection>
           <section className="py-16 text-center bg-luxury-dark border-y border-luxury-gold/10 relative z-10">
             <p className="font-display text-luxury-cream text-2xl md:text-3xl mb-6">
               Love what you see?
@@ -93,10 +102,18 @@ export default function Home() {
               Check Availability
             </a>
           </section>
-          <Statistics />
-          <Events />
-          <Amenities />
-          <Contact />
+          <LazySection minHeight="50vh">
+            <Statistics />
+          </LazySection>
+          <LazySection minHeight="50vh">
+            <Events />
+          </LazySection>
+          <LazySection minHeight="50vh">
+            <Amenities />
+          </LazySection>
+          <LazySection minHeight="100vh">
+            <Contact />
+          </LazySection>
         </Suspense>
       </main>
     </>

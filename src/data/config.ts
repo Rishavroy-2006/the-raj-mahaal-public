@@ -15,12 +15,12 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/therajmahaal/",
   },
   images: {
-    hero: "/images/hero/Banquet-Front.png",
-    experience: "/images/experience/experience-bg.jpg",
-    videoTour: "/images/video/video-thumbnail.jpg",
+    hero: "/images/hero/Banquet-Front.webp",
+    experience: "/images/experience/experience-bg.webp",
+    videoTour: "/images/video/video-thumbnail.webp",
     facilities: {
-      grandHall: "/images/facilities/grand-hall.jpg",
-      staging: "/images/facilities/staging.jpg",
+      grandHall: "/images/facilities/grand-hall.webp",
+      staging: "/images/facilities/staging.webp",
     }
   },
   features: [
