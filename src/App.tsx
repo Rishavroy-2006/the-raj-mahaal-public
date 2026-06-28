@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { HelmetProvider } from "react-helmet-async";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 import { LazyMotion, domAnimation } from "motion/react";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
@@ -18,6 +18,10 @@ import FullGallery from "./pages/FullGallery";
 export default function App() {
   return (
     <HelmetProvider>
+      <Helmet>
+        <html lang="en" />
+        <title>The Raj Mahaal - Royal Banquet Hall</title>
+      </Helmet>
       <LazyMotion features={domAnimation} strict>
         <ScrollToTop />
         <div className="flex flex-col min-h-screen overflow-x-hidden">
