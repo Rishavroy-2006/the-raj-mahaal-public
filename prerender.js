@@ -22,7 +22,13 @@ async function prerender() {
     // Inject the appHtml into the template
     const html = template.replace(`<!--app-html-->`, appHtml).replace(`<div id="root"></div>`, `<div id="root">${appHtml}</div>`);
     
-    let filePath = `dist${url === '/' ? '/index' : url}.html`;
+    let filePath = `dist${url === '/' ? '/index.html' : url + '/index.html'}`;
+    
+    // Ensure the directory exists
+    const dir = path.dirname(toAbsolute(filePath));
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
     
     fs.writeFileSync(toAbsolute(filePath), html);
     console.log(`pre-rendered: ${filePath}`);
