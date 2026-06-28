@@ -86,7 +86,7 @@ export function Navbar() {
             to="/#contact"
             className="text-[11px] xl:text-[13px] tracking-[0.15em] font-semibold bg-luxury-gold text-luxury-dark px-4 xl:px-8 py-2 xl:py-3 hover:bg-luxury-gold-light transition-all duration-500 uppercase"
           >
-            Book Now
+            Check Availability
           </Link>
         </div>
 
@@ -129,7 +129,7 @@ export function Navbar() {
               className="text-center text-[13px] tracking-[0.15em] font-semibold bg-luxury-gold text-luxury-dark px-8 py-3 hover:bg-luxury-gold-light transition-all duration-500 uppercase"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Book Now
+              Check Availability
             </Link>
           </div>
         </div>

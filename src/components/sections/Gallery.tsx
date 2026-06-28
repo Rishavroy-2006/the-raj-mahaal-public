@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { siteConfig } from "../../data/config";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export function Gallery() {
   return (
     <section className="py-16 md:py-[120px] px-6 md:px-20 bg-[#150f0e] border-y border-luxury-gold/10" id="gallery">
       <div className="max-w-[1440px] mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -42,8 +42,12 @@ export function Gallery() {
             {siteConfig.gallery.map((image, i) => (
               <div
                 key={i}
+                role="button"
+                tabIndex={0}
+                aria-label={`View ${image.alt} in fullscreen`}
                 className={`group relative overflow-hidden border border-luxury-gold/20 bg-luxury-dark ${image.colSpan} ${image.rowSpan} cursor-pointer`}
                 onClick={() => openLightbox(i)}
+                onKeyDown={(e) => e.key === 'Enter' && openLightbox(i)}
               >
                 <img
                   src={image.src}
@@ -71,7 +75,7 @@ export function Gallery() {
               View Full Gallery
             </Link>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       <Lightbox

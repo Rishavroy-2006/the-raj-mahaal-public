@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Play } from "lucide-react";
 import { siteConfig } from "../../data/config";
@@ -28,7 +28,7 @@ export function VideoTour() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-luxury-gold/5 via-luxury-maroon to-luxury-maroon"></div>
       
       <div className="max-w-[1440px] mx-auto relative z-10 text-center">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -102,7 +102,7 @@ export function VideoTour() {
               )}
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

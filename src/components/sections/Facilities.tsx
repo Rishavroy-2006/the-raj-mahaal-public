@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { Power, Star } from "lucide-react";
 import { siteConfig } from "../../data/config";
 
@@ -6,7 +6,7 @@ export function Facilities() {
   return (
     <section className="py-16 md:py-[120px] px-6 md:px-20 bg-luxury-dark" id="facilities">
       <div className="max-w-[1440px] mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -107,7 +107,7 @@ export function Facilities() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

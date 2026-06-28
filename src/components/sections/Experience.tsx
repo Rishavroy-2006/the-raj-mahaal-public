@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { SectionHeading } from "../ui/SectionHeading";
 import { siteConfig } from "../../data/config";
 
@@ -24,7 +24,7 @@ export function Experience() {
         </div>
         
         <div className="flex flex-col justify-center px-6 md:px-16 lg:px-24 py-16 md:py-24 relative z-10 bg-gradient-to-b from-luxury-dark to-luxury-maroon/20">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -74,7 +74,7 @@ export function Experience() {
                 {siteConfig.pricing.ctaText}
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

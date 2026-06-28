@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { siteConfig } from "../../data/config";
 import { Star, MapPin } from "lucide-react";
 
@@ -17,7 +17,7 @@ export function Statistics() {
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-luxury-gold via-transparent to-transparent"></div>
       
       <div className="max-w-[1440px] mx-auto px-6 md:px-20 relative z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -38,7 +38,7 @@ export function Statistics() {
               </span>
             </div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { siteConfig } from "../../data/config";
 import { PhoneCall } from "lucide-react";
 import { useState } from "react";
@@ -70,7 +70,7 @@ export function Contact() {
       <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-luxury-gold/20 via-transparent to-transparent"></div>
       
       <div className="relative z-10 max-w-5xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -133,7 +133,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <h3 className="font-display text-luxury-gold mb-4 text-2xl md:text-3xl">Inquiry Received</h3>
-                <p className="text-luxury-cream/80 font-light text-sm md:text-base mb-8">Our Royal Concierge will contact you within 24 hours.</p>
+                <p className="text-luxury-cream/80 font-light text-sm md:text-base mb-8">Thank you! Our team will call you within 24 hours to discuss your event.</p>
                 <button
                   type="button"
                   onClick={() => setIsSubmitted(false)}
@@ -148,34 +148,44 @@ export function Contact() {
                   Enquire About Your Event
                 </h3>
                 <form className="space-y-8" onSubmit={handleSubmit} noValidate>
-                  <div>
-                    <label className="sr-only" htmlFor="name">Name</label>
+                  <div className="relative">
                     <input
                       id="name"
                       name="name"
                       required
                       aria-describedby={formErrors.name ? "name-error" : undefined}
-                      className={`w-full border-0 border-b ${formErrors.name ? 'border-luxury-gold' : 'border-luxury-gold/30'} bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream placeholder:text-luxury-cream/40 transition-colors focus:outline-none`}
+                      className={`peer w-full border-0 border-b ${formErrors.name ? 'border-luxury-gold' : 'border-luxury-gold/30'} bg-transparent px-0 pt-6 pb-2 focus:ring-0 focus:outline-none focus:border-luxury-gold text-luxury-cream placeholder-transparent transition-colors`}
                       placeholder="Your Full Name"
                       type="text"
                     />
+                    <label
+                      htmlFor="name"
+                      className="absolute left-0 top-0 text-[11px] font-semibold text-luxury-gold tracking-widest uppercase transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-luxury-cream/40 peer-placeholder-shown:text-base peer-placeholder-shown:font-light peer-focus:top-0 peer-focus:text-[11px] peer-focus:text-luxury-gold"
+                    >
+                      Full Name
+                    </label>
                     {formErrors.name && (
                       <p id="name-error" role="alert" className="text-luxury-gold text-xs mt-2 font-medium">
                         {formErrors.name}
                       </p>
                     )}
                   </div>
-                  <div>
-                    <label className="sr-only" htmlFor="phone">Phone</label>
+                  <div className="relative">
                     <input
                       id="phone"
                       name="phone"
                       required
                       aria-describedby={formErrors.phone ? "phone-error" : undefined}
-                      className={`w-full border-0 border-b ${formErrors.phone ? 'border-luxury-gold' : 'border-luxury-gold/30'} bg-transparent px-0 py-4 focus:ring-0 focus:border-luxury-gold text-luxury-cream placeholder:text-luxury-cream/40 transition-colors focus:outline-none`}
+                      className={`peer w-full border-0 border-b ${formErrors.phone ? 'border-luxury-gold' : 'border-luxury-gold/30'} bg-transparent px-0 pt-6 pb-2 focus:ring-0 focus:outline-none focus:border-luxury-gold text-luxury-cream placeholder-transparent transition-colors`}
                       placeholder="Contact Number"
                       type="tel"
                     />
+                    <label
+                      htmlFor="phone"
+                      className="absolute left-0 top-0 text-[11px] font-semibold text-luxury-gold tracking-widest uppercase transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-luxury-cream/40 peer-placeholder-shown:text-base peer-placeholder-shown:font-light peer-focus:top-0 peer-focus:text-[11px] peer-focus:text-luxury-gold"
+                    >
+                      Contact Number
+                    </label>
                     {formErrors.phone && (
                       <p id="phone-error" role="alert" className="text-luxury-gold text-xs mt-2 font-medium">
                         {formErrors.phone}
@@ -183,7 +193,12 @@ export function Contact() {
                     )}
                   </div>
                   <div>
-                    <label className="sr-only" htmlFor="event">Event Type</label>
+                    <label
+                      htmlFor="event"
+                      className="block text-[11px] font-semibold text-luxury-cream/60 tracking-widest mb-2 uppercase"
+                    >
+                      Event Type
+                    </label>
                     <select
                       id="event"
                       name="event"
@@ -240,7 +255,7 @@ export function Contact() {
               </>
             )}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

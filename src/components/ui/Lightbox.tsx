@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect } from "react";
 
@@ -50,7 +50,7 @@ export function Lightbox({
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -87,7 +87,7 @@ export function Lightbox({
           <div className="flex flex-col items-center justify-center w-full max-w-7xl px-4 md:px-24 h-full py-20 md:py-24">
             <div className="flex-1 min-h-0 w-full flex items-center justify-center mb-6 md:mb-8">
               <AnimatePresence mode="wait">
-                <motion.img
+                <m.img
                   key={currentIndex}
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -127,7 +127,7 @@ export function Lightbox({
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

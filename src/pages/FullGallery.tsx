@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { siteConfig } from "../data/config";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -30,7 +30,7 @@ export default function FullGallery() {
       </Helmet>
       <main className="flex-grow pt-24 bg-luxury-dark min-h-screen">
       <div className="max-w-[1440px] mx-auto px-6 md:px-20 py-16">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -62,7 +62,7 @@ export default function FullGallery() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {demoImages.map((image, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -87,10 +87,10 @@ export default function FullGallery() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       <Lightbox

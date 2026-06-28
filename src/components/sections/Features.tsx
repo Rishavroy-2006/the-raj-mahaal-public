@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { siteConfig } from "../../data/config";
 import { Snowflake, Camera, Utensils, Zap } from "lucide-react";
 
@@ -20,7 +20,7 @@ export function Features() {
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-luxury-gold via-transparent to-transparent"></div>
       
       <div className="max-w-[1440px] mx-auto relative z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -34,11 +34,11 @@ export function Features() {
             Hallmarks of Excellence
           </h2>
           <div className="w-24 h-px bg-luxury-gold mx-auto"></div>
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12">
           {siteConfig.features.map((feature, i) => (
-            <motion.div
+            <m.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +55,7 @@ export function Features() {
               <p className="text-luxury-cream/70 text-xs md:text-sm leading-relaxed font-light">
                 {feature.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

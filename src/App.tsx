@@ -4,6 +4,7 @@
  */
 
 import { HelmetProvider } from "react-helmet-async";
+import { LazyMotion, domAnimation } from "motion/react";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
@@ -17,18 +18,20 @@ import FullGallery from "./pages/FullGallery";
 export default function App() {
   return (
     <HelmetProvider>
-      <ScrollToTop />
-      <div className="flex flex-col min-h-screen overflow-x-hidden">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/rules" element={<RulesAndRegulations />} />
-          <Route path="/gallery" element={<FullGallery />} />
-        </Routes>
-        <Footer />
-        <WhatsAppButton />
-      </div>
-      <Analytics />
+      <LazyMotion features={domAnimation} strict>
+        <ScrollToTop />
+        <div className="flex flex-col min-h-screen overflow-x-hidden">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/rules" element={<RulesAndRegulations />} />
+            <Route path="/gallery" element={<FullGallery />} />
+          </Routes>
+          <Footer />
+          <WhatsAppButton />
+        </div>
+        <Analytics />
+      </LazyMotion>
     </HelmetProvider>
   );
 }
