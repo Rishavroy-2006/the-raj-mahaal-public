@@ -17,18 +17,48 @@ export default function Home() {
   const schemaMarkup = {
     "@context": "https://schema.org",
     "@type": "EventVenue",
-    "name": siteConfig.name,
-    "description": siteConfig.description,
-    "url": siteConfig.url,
-    "telephone": siteConfig.contact.primaryPhone,
+    "name": "The Raj Mahaal",
+    "description": "Sodepur's premier fully air-conditioned banquet hall for weddings, receptions, engagements, birthdays, and corporate events. Capacity up to 500 guests.",
+    "url": "https://therajmahaal.vercel.app/",
+    "telephone": "+91-9331027787",
+    "priceRange": "₹₹",
+    "openingHours": "Mo-Su 07:00-02:00",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Sulekhar More Sodepur",
+      "streetAddress": "Sulekhar More, Sodepur",
       "addressLocality": "Natagarh",
       "addressRegion": "West Bengal",
+      "postalCode": "700113",
       "addressCountry": "IN"
     },
-    "image": siteConfig.gallery[0].src
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "22.6991366",
+      "longitude": "88.3944435"
+    },
+    "hasMap": "https://maps.app.goo.gl/L9gCVA2UdwhLbScC6",
+    "sameAs": [
+      "https://www.facebook.com/people/The-Raj-Mahaal/61586335487117/",
+      "https://www.instagram.com/therajmahaal/",
+      "https://maps.app.goo.gl/L9gCVA2UdwhLbScC6"
+    ],
+    "image": "https://therajmahaal.vercel.app/images/gallery/gallery-1.jpg",
+    "maximumAttendeeCapacity": 500,
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Generator Backup", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Parking", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Tandoor Kitchen", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Mocktail Counter", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Decorated Stage", "value": true }
+    ],
+    "event": [
+      { "@type": "Event", "name": "Wedding Ceremonies" },
+      { "@type": "Event", "name": "Receptions" },
+      { "@type": "Event", "name": "Engagements" },
+      { "@type": "Event", "name": "Corporate Events" },
+      { "@type": "Event", "name": "Birthday Parties" }
+    ]
   };
 
   return (

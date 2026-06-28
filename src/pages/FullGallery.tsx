@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { Lightbox } from "../components/ui/Lightbox";
+import { Helmet } from "react-helmet-async";
 
 export default function FullGallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -22,7 +23,12 @@ export default function FullGallery() {
   };
 
   return (
-    <main className="flex-grow pt-24 bg-luxury-dark min-h-screen">
+    <>
+      <Helmet>
+        <title>Gallery | {siteConfig.name}</title>
+        <meta name="description" content="Explore our beautiful banquet halls, wedding setups, and events gallery at The Raj Mahaal." />
+      </Helmet>
+      <main className="flex-grow pt-24 bg-luxury-dark min-h-screen">
       <div className="max-w-[1440px] mx-auto px-6 md:px-20 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -95,5 +101,6 @@ export default function FullGallery() {
         onIndexChange={setCurrentIndex}
       />
     </main>
+    </>
   );
 }

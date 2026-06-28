@@ -11,6 +11,7 @@ export default function RulesAndRegulations() {
     <>
       <Helmet>
         <title>Venue Guidelines | {siteConfig.name}</title>
+        <meta name="description" content="Venue guidelines, booking policies, and rules for The Raj Mahaal banquet hall, Sodepur." />
       </Helmet>
       <main className="flex-grow w-full pt-32 pb-24 px-6 md:px-20 max-w-[1440px] mx-auto">
         <div className="bg-luxury-dark/50 border border-luxury-gold/30 rounded-lg shadow-2xl w-full max-w-4xl mx-auto flex flex-col relative overflow-hidden">
