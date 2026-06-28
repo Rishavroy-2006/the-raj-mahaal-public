@@ -67,7 +67,7 @@ export default function Home() {
         <link rel="canonical" href={siteConfig.url} />
         <meta property="og:title" content={`${siteConfig.name} | Royal Banquet Hall in Sodepur`} />
         <meta property="og:description" content={siteConfig.description} />
-        <meta property="og:image" content={siteConfig.gallery[0].src} />
+        <meta property="og:image" content={siteConfig.gallery.fallbackImages[0].src} />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
           {JSON.stringify(schemaMarkup)}

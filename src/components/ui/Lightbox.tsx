@@ -3,7 +3,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect } from "react";
 
 interface LightboxProps {
-  images: { src: string; alt: string }[];
+  images: { src: string; alt: string; caption?: string }[];
   currentIndex: number;
   isOpen: boolean;
   onClose: () => void;
@@ -104,7 +104,7 @@ export function Lightbox({
               <div className="text-white text-sm md:text-lg font-light tracking-wide flex flex-col md:flex-row items-center gap-1 md:gap-4">
                 <span className="hidden md:inline">The Raj Mahaal</span>
                 <span className="hidden md:inline text-white/30">|</span>
-                <span className="text-center">{images[currentIndex].alt}</span>
+                <span className="text-center">{images[currentIndex].caption || images[currentIndex].alt}</span>
               </div>
               <div className="flex items-center gap-6 mt-2 md:mt-0">
                 <button

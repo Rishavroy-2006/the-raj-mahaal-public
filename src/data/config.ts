@@ -45,26 +45,32 @@ export const siteConfig = {
       icon: "Zap"
     }
   ],
-  gallery: [
-    {
-      src: "/images/gallery/gallery-1.jpg",
-      alt: "Grand Stage Decor",
-      colSpan: "md:col-span-8",
-      rowSpan: "md:row-span-3"
-    },
-    {
-      src: "/images/gallery/gallery-2.jpg",
-      alt: "Premium Dining",
-      colSpan: "md:col-span-4",
-      rowSpan: "md:row-span-2"
-    },
-    {
-      src: "/images/gallery/gallery-3.jpg",
-      alt: "Wedding Setup",
-      colSpan: "md:col-span-4",
-      rowSpan: "md:row-span-1"
-    }
-  ],
+  gallery: {
+    csvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWcKtNMRYjY_ikvtpthgC1hFpyqNuvaXz_399bEYQeoBXPhEzWryJPFnFFCorAX3rjaOUyq8ofO7pF/pub?gid=0&single=true&output=csv",
+    fallbackImages: [
+      {
+        src: "/images/gallery/gallery-1.jpg",
+        alt: "Grand Stage Decor",
+        caption: "Grand Stage Decor",
+        colSpan: "md:col-span-8",
+        rowSpan: "md:row-span-3"
+      },
+      {
+        src: "/images/gallery/gallery-2.jpg",
+        alt: "Premium Dining",
+        caption: "Premium SItting",
+        colSpan: "md:col-span-4",
+        rowSpan: "md:row-span-2"
+      },
+      {
+        src: "/images/gallery/gallery-3.jpg",
+        alt: "Wedding Setup",
+        caption: "Built-in Mocktail Counter",
+        colSpan: "md:col-span-4",
+        rowSpan: "md:row-span-1"
+      }
+    ]
+  },
   stats: [
     { value: "50+", label: "CELEBRATIONS HOSTED" },
     { value: "1k+", label: "ESTEEMED GUESTS" },

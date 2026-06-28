@@ -5,17 +5,12 @@ import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { Lightbox } from "../components/ui/Lightbox";
 import { Helmet } from "react-helmet-async";
+import { useGalleryData } from "../hooks/useGalleryData";
 
 export default function FullGallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Duplicate images for demo purposes
-  const demoImages = [
-    ...siteConfig.gallery,
-    ...siteConfig.gallery,
-    ...siteConfig.gallery,
-  ];
+  const { images, loading, error } = useGalleryData();
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -60,41 +55,56 @@ export default function FullGallery() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {demoImages.map((image, i) => (
-              <m.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative overflow-hidden aspect-square border border-luxury-gold/10 cursor-pointer"
-                onClick={() => openLightbox(i)}
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
-                  <div className="p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-luxury-gold text-xs tracking-widest uppercase font-semibold mb-2">
-                      The Raj Mahaal
-                    </p>
-                    <p className="text-white text-lg font-display">
-                      {image.alt}
-                    </p>
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="w-8 h-8 border-2 border-luxury-gold border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : error ? (
+            <div className="text-center py-10 text-red-400">
+              <p>Failed to load gallery images.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {images.map((image, i) => (
+                <m.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: (i % 6) * 0.1 }}
+                  className="group relative overflow-hidden aspect-square border border-luxury-gold/10 cursor-pointer"
+                  onClick={() => openLightbox(i)}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = '/images/gallery/gallery-1.jpg'; // fallback
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+                    <div className="p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      <p className="text-luxury-gold text-xs tracking-widest uppercase font-semibold mb-2">
+                        The Raj Mahaal
+                      </p>
+                      {image.caption && (
+                        <p className="text-white text-lg font-display line-clamp-2">
+                          {image.caption}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </m.div>
-            ))}
-          </div>
+                </m.div>
+              ))}
+            </div>
+          )}
         </m.div>
       </div>
 
       <Lightbox
-        images={demoImages}
+        images={images}
         currentIndex={currentIndex}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
